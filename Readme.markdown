@@ -13,10 +13,11 @@ Published Daylite Messages
 ```
 "msg": {
   "0": {
-    "mode": "velocity" | "position",
+    "mode": "velocity" | "position" | "power",
     "open_loop": bool,
     "position": float32,
     "velocity": float32,
+    "power": float32
   },
   ...
 }
@@ -26,21 +27,24 @@ Cases:
   - For open loop position control:
     - mode = "position"
     - open_loop = true
-    - positiion = The desired position in meters (in the wheel rotational frame)
-    - velocity = The desired velocity in meters/second (in the wheel rotational frame)
+    - positiion = The desired position in meters
+    - velocity = The desired velocity in meters/second
   - For closed loop position control:
     - mode = "velocity"
     - open_loop = false
-    - position = The desired position in meters (in the wheel rotational frame)
-    - velocity = The desired velocity in meters/second (in the wheel rotational frame)
+    - position = The desired position in meters
+    - velocity = The desired velocity in meters/second
   - For open loop velocity control:
     - mode = "velocity"
     - open_loop = true
-    - velocity = The desired velocity in meters/second (in the wheel rotational frame)
+    - velocity = The desired velocity in meters/second
   - For closed loop velocity control:
     - mode = "velocity"
     - open_loop = false
-    - velocity = The desired velocity in meters/second (in the wheel rotational frame)
+    - velocity = The desired velocity in meters/second
+  - For closed loop power control:
+    - mode = "power"
+    - power = The desired power from -1.0 to 1.0
     
 `robot/set_motor_calibration`
 -----------------------------
@@ -63,16 +67,17 @@ Subscribed Daylite Messages
 ```
 "msg": {
   "0": {
-    "mode": "velocity" | "position",
+    "mode": "velocity" | "position" | "power",
     "open_loop": bool,
     "position": uint64,
     "velocity": float32,
+    "power": float32
   },
   ...
 }
 ```
 
-Note: The position and velocity will be returned regardless of mode.
+Note: The position, velocity, and power will be returned regardless of mode.
 
 `robot/motor_calibration`
 -------------------------
