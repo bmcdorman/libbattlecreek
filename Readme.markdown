@@ -47,10 +47,12 @@ Cases:
 
 ```
 "msg" : {
-  "0": float32 # ticks per meter,
+  "0": float32, # ticks per meter
   ...
 }
 ```
+
+Note: float32 shall be `NaN` for no configuration
 
 Subscribed Daylite Messages
 ===========================
@@ -77,7 +79,7 @@ Note: The position and velocity will be returned regardless of mode.
 
 ```
 "msg": {
-  "0": float32,
+  "0": float32, # ticks per meter
   ...
 }
 ```
