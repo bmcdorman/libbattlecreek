@@ -50,9 +50,11 @@ Cases:
 `robot/set_servo_states`
 ------------------------
 
+```
 "msg": {
   "position": [uint16, uint16, uint16, ...]
 }
+```
 
 Where [0 .. 2^11] are valid positions and 0xFFFF = no change
 
@@ -104,9 +106,11 @@ Note: The position, velocity, and power will be returned regardless of mode.
 `robot/servo_states`
 ------------------------
 
+```
 "msg": {
   "position": [uint16, uint16, uint16, ...]
 }
+```
 
 `robot/analog_states`
 ---------------
