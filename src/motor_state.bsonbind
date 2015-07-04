@@ -1,0 +1,5 @@
+string mode!
+bool open_loop
+uint32 position
+uint32 velocity
+uint16 power

@@ -2,34 +2,25 @@ project(libbattlecreek)
 
 cmake_minimum_required(VERSION 3.0)
 
-file(GLOB BATTLECREEK_SOURCES src/*.cpp)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake") 
+find_package(Daylite REQUIRED)
+find_package(BsonBind REQUIRED)
 
-function(add_bson_bind PATH_ INCLUDES)
-  get_filename_component(NAME ${PATH_} NAME_WE)
-  add_custom_command(OUTPUT ${NAME}.hpp COMMAND bson_bind ${PATH_} ${CMAKE_BINARY_DIR}/${NAME}.hpp WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-  set(${INCLUDES} ${${INCLUDES}} ${NAME}.hpp PARENT_SCOPE)
-endfunction()
+file(GLOB BATTLECREEK_SOURCES src/*.cpp)
 
 add_definitions(-std=c++11)
 
 include_directories(include ${CMAKE_BINARY_DIR})
 
-################################################################################
-#   Find libbson                                                               #
-################################################################################
+include_directories(${DAYLITE_INCLUDE_DIRS})
 
-if(WIN32)
-  find_file(LIBBSON_DLL libbson-1.0.dll PATHS "${PROJECT_SOURCE_DIR}/../prefix/usr/bin" NO_DEFAULT_PATH)
-  find_path(LIBBSON_INCLUDE_DIR bson.h PATHS "${PROJECT_SOURCE_DIR}/../prefix/usr/include/libbson-1.0" NO_DEFAULT_PATH)
-  find_library(LIBBSON_LIBRARY bson-1.0.lib PATHS "${PROJECT_SOURCE_DIR}/../prefix/usr/lib" NO_DEFAULT_PATH)
-elseif(APPLE)
-  set(LIBBSON_INCLUDE_DIR "/usr/local/include/libbson-1.0")
-  set(LIBBSON_LIBRARY "bson-1.0")
-endif()
+add_bson_binds(BSON_BIND_INCLUDES
+  src/motor_state.bsonbind
+  src/servo_states.bsonbind
+  src/digital_states.bsonbind
+  src/analog_states.bsonbind
+)
 
-include_directories(${LIBBSON_INCLUDE_DIR})
-
-add_bson_bind(src/test.bsonbind BSON_BIND_INCLUDES)
 add_library(battlecreek SHARED ${BATTLECREEK_SOURCES} ${BSON_BIND_INCLUDES})
 
-target_link_libraries(battlecreek ${LIBBSON_LIBRARY} daylite)
+target_link_libraries(battlecreek ${DAYLITE_LIBRARIES})
