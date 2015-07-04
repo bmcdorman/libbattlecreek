@@ -6,13 +6,13 @@ file(GLOB BATTLECREEK_SOURCES src/*.cpp)
 
 function(add_bson_bind PATH_ INCLUDES)
   get_filename_component(NAME ${PATH_} NAME_WE)
-  add_custom_command(OUTPUT ${NAME}.hpp COMMAND bson_bind ${PATH_} src/${NAME}.hpp WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+  add_custom_command(OUTPUT ${NAME}.hpp COMMAND bson_bind ${PATH_} ${CMAKE_BINARY_DIR}/${NAME}.hpp WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
   set(${INCLUDES} ${${INCLUDES}} ${NAME}.hpp PARENT_SCOPE)
 endfunction()
 
 add_definitions(-std=c++11)
 
-include_directories(include)
+include_directories(include ${CMAKE_BINARY_DIR})
 
 ################################################################################
 #   Find libbson                                                               #
