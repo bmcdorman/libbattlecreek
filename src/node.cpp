@@ -3,6 +3,8 @@
 #include <functional>
 #include <sstream>
 
+#include <daylite/spinner.hpp>
+
 using namespace battlecreek;
 using namespace std;
 using namespace std::placeholders;
@@ -30,11 +32,6 @@ bool node::initialize()
 {
   if(!_node->join_daylite("127.0.0.1", 8374)) return false;
   
-  std::shared_ptr<daylite::subscriber> _motor_states;
-  std::shared_ptr<daylite::subscriber> _servo_states;
-  std::shared_ptr<daylite::subscriber> _analog_states;
-  std::shared_ptr<daylite::subscriber> _digital_states;
-  
   if(!(_set_motor_states_pub = _node->advertise("robot/set_motor_states"))) return false;
   if(!(_set_servo_states_pub = _node->advertise("robot/set_servo_states"))) return false;
   if(!(_set_analog_states_pub = _node->advertise("robot/set_analog_states"))) return false;
@@ -48,9 +45,87 @@ bool node::initialize()
   return true;
 }
 
-void node::motor_states_cb(const bson_t *msg, void *)
+void node::set_analog_pullup(const uint8_t id, const bool pullup)
 {
   
+}
+
+void node::set_digital_mode(const uint8_t id, const bool mode)
+{
+  
+}
+
+void node::set_motor_state(const uint8_t id, const bson_bind::motor_state &motor_state)
+{
+  _motor_states[id] = motor_state;
+  _motor_states_dirty[id] = true;
+  if(_auto_publish) publish();
+}
+
+void node::set_servo_position(const uint8_t id, const uint16_t position)
+{
+  
+}
+
+bool node::analog_pullup(const uint8_t id)
+{
+  
+}
+
+bool node::digital_mode(const uint8_t id)
+{
+  
+}
+
+bson_bind::motor_state node::motor_state(const uint8_t id)
+{
+  if(_auto_publish) publish();
+  return _motor_states[id];
+}
+
+uint16_t node::servo_position(const uint8_t id)
+{
+  
+}
+
+void node::publish()
+{
+  using namespace daylite;
+  using namespace bson_bind;
+  
+  {
+    motor_states msg;
+    array<option<bson_bind::motor_state> *, 4> motor_state_ptr = {
+      &msg.m0, &msg.m1, &msg.m2, &msg.m3
+    };
+    for(uint8_t i = 0; i < _motor_states.size(); ++i)
+    {
+      if(!_motor_states_dirty[i]) continue;
+      *motor_state_ptr[i] = some(_motor_states[i]);
+    }
+    _set_motor_states_pub->publish(msg.bind());
+  }
+  
+  
+  spinner::spin_once();
+}
+
+void node::node::motor_states_cb(const bson_t *msg, void *)
+{
+  using namespace bson_bind;
+  
+  {
+    auto ms = motor_states::unbind(msg);
+    _motor_states_dirty.fill(false);
+    array<option<bson_bind::motor_state> *, 4> motor_state_ptr = {
+      &ms.m0, &ms.m1, &ms.m2, &ms.m3
+    };
+    for(uint8_t i = 0; i < _motor_states.size(); ++i)
+    {
+      if(motor_state_ptr[i]->none()) continue;
+      _motor_states[i] = motor_state_ptr[i]->unwrap();
+    }
+  }
 }
 
 void node::servo_states_cb(const bson_t *msg, void *)

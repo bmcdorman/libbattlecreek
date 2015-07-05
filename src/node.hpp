@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <vector>
 #include <iostream>
+#include <array>
 
 #include "analog_states.hpp"
 #include "digital_states.hpp"
@@ -49,11 +50,17 @@ namespace battlecreek
     bson_bind::motor_state motor_state(const uint8_t id);
     uint16_t servo_position(const uint8_t id);
     
+    void publish();
+    
   private:
+    
+    
     void motor_states_cb(const bson_t *msg, void *);
     void servo_states_cb(const bson_t *msg, void *);
     void analog_states_cb(const bson_t *msg, void *);
     void digital_states_cb(const bson_t *msg, void *);
+    
+    
     
     static node *_singleton_self;
     
@@ -61,7 +68,9 @@ namespace battlecreek
     
     std::shared_ptr<daylite::node> _node;
     
-    std::vector<uint16_t> servos;
+    std::array<bson_bind::motor_state, 4> _motor_states;
+    std::array<bool, 4> _motor_states_dirty;
+    std::vector<uint16_t> _servos;
     
     std::shared_ptr<daylite::publisher> _set_motor_states_pub;
     std::shared_ptr<daylite::publisher> _set_servo_states_pub;
