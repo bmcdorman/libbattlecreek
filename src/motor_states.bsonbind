@@ -1,3 +1,4 @@
+%package battlecreek
 motor_state m0
 motor_state m1
 motor_state m2

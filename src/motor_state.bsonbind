@@ -1,3 +1,4 @@
+%package battlecreek
 string mode!
 bool open_loop
 int32 position

@@ -42,12 +42,12 @@ namespace battlecreek
     
     void set_analog_pullup(const uint8_t id, const bool pullup);
     void set_digital_mode(const uint8_t id, const bool mode);
-    void set_motor_state(const uint8_t id, const bson_bind::motor_state &motor_state);
+    void set_motor_state(const uint8_t id, const battlecreek::motor_state &motor_state);
     void set_servo_position(const uint8_t id, const uint16_t position);
     
     bool analog_pullup(const uint8_t id);
     bool digital_mode(const uint8_t id);
-    bson_bind::motor_state motor_state(const uint8_t id);
+    motor_state motor_state(const uint8_t id);
     uint16_t servo_position(const uint8_t id);
     
     void publish();
@@ -68,7 +68,7 @@ namespace battlecreek
     
     std::shared_ptr<daylite::node> _node;
     
-    std::array<bson_bind::motor_state, 4> _motor_states;
+    std::array<battlecreek::motor_state, 4> _motor_states;
     std::array<bool, 4> _motor_states_dirty;
     std::vector<uint16_t> _servos;
     

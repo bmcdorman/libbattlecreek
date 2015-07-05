@@ -55,7 +55,7 @@ void node::set_digital_mode(const uint8_t id, const bool mode)
   
 }
 
-void node::set_motor_state(const uint8_t id, const bson_bind::motor_state &motor_state)
+void node::set_motor_state(const uint8_t id, const battlecreek::motor_state &motor_state)
 {
   _motor_states[id] = motor_state;
   _motor_states_dirty[id] = true;
@@ -77,7 +77,7 @@ bool node::digital_mode(const uint8_t id)
   
 }
 
-bson_bind::motor_state node::motor_state(const uint8_t id)
+motor_state node::motor_state(const uint8_t id)
 {
   if(_auto_publish) publish();
   return _motor_states[id];
@@ -95,7 +95,7 @@ void node::publish()
   
   {
     motor_states msg;
-    array<option<bson_bind::motor_state> *, 4> motor_state_ptr = {
+    array<option<battlecreek::motor_state> *, 4> motor_state_ptr = {
       &msg.m0, &msg.m1, &msg.m2, &msg.m3
     };
     for(uint8_t i = 0; i < _motor_states.size(); ++i)
@@ -117,7 +117,7 @@ void node::node::motor_states_cb(const bson_t *msg, void *)
   {
     auto ms = motor_states::unbind(msg);
     _motor_states_dirty.fill(false);
-    array<option<bson_bind::motor_state> *, 4> motor_state_ptr = {
+    array<option<battlecreek::motor_state> *, 4> motor_state_ptr = {
       &ms.m0, &ms.m1, &ms.m2, &ms.m3
     };
     for(uint8_t i = 0; i < _motor_states.size(); ++i)

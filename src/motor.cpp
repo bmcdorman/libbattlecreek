@@ -2,7 +2,6 @@
 #include "node.hpp"
 
 using namespace battlecreek;
-using namespace bson_bind;
 
 motor::motor(const uint8_t port)
   : _port(port)
