@@ -16,6 +16,7 @@ include_directories(${DAYLITE_INCLUDE_DIRS})
 
 add_bson_binds(BSON_BIND_INCLUDES
   src/motor_state.bsonbind
+  src/motor_states.bsonbind
   src/servo_states.bsonbind
   src/digital_states.bsonbind
   src/analog_states.bsonbind

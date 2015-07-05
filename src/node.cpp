@@ -5,39 +5,9 @@
 
 using namespace battlecreek;
 using namespace std;
+using namespace std::placeholders;
 
 node *node::_singleton_self = 0;
-
-motor_state::motor_state(const _mode m, bool open_loop, const uint64_t position,
-  const uint32_t velocity, const uint16_t power)
-  : mode(m)
-  , open_loop(open_loop)
-  , position(position)
-  , velocity(velocity)
-  , power(power)
-{
-}
-
-motor_state motor_state::off_motor_state()
-{
-  return motor_state(mode_off, false, 0, 0, 0);
-}
-  
-motor_state motor_state::power_motor_state(const uint16_t power)
-{
-  return motor_state(mode_power, false, 0, 0, power);
-}
-
-motor_state motor_state::velocity_motor_state(const uint32_t velocity, const bool open_loop)
-{
-  return motor_state(mode_velocity, open_loop, 0, velocity, 0);
-}
-
-motor_state motor_state::position_motor_state(const uint64_t position, const uint32_t velocity,
-  const bool open_loop)
-{
-  return motor_state(mode_position, open_loop, position, velocity, 0);
-}
 
 namespace
 {
@@ -64,21 +34,23 @@ bool node::initialize()
   std::shared_ptr<daylite::subscriber> _servo_states;
   std::shared_ptr<daylite::subscriber> _analog_states;
   std::shared_ptr<daylite::subscriber> _digital_states;
-  if(!(_set_motor_states = _node->advertise("robot/set_motor_states"))) return false;
-  if(!(_set_servo_states = _node->advertise("robot/set_servo_states"))) return false;
-  if(!(_set_analog_states = _node->advertise("robot/set_analog_states"))) return false;
-  if(!(_set_digital_states = _node->advertise("robot/set_digital_states"))) return false;
   
-  // if(!(_motor_states = _node->subscribe("robot/motor_states", bind(&node::motor_states_cb, this)))) return false;
-  // if(!(_servo_states = _node->subscribe("robot/servo_states", bind(&node::motor_states_cb, this)))) return false;
-  // if(!(_analog_states = _node->subscribe("robot/analog_states", bind(&node::motor_states_cb, this)))) return false;
-  // if(!(_digital_states = _node->subscribe("robot/digital_states", bind(&node::motor_states_cb, this)))) return false;
+  if(!(_set_motor_states_pub = _node->advertise("robot/set_motor_states"))) return false;
+  if(!(_set_servo_states_pub = _node->advertise("robot/set_servo_states"))) return false;
+  if(!(_set_analog_states_pub = _node->advertise("robot/set_analog_states"))) return false;
+  if(!(_set_digital_states_pub = _node->advertise("robot/set_digital_states"))) return false;
+  
+  if(!(_motor_states_sub = _node->subscribe("robot/motor_states", bind(&node::motor_states_cb, this, _1, _2)))) return false;
+  if(!(_servo_states_sub = _node->subscribe("robot/servo_states", bind(&node::servo_states_cb, this, _1, _2)))) return false;
+  if(!(_analog_states_sub = _node->subscribe("robot/analog_states", bind(&node::analog_states_cb, this, _1, _2)))) return false;
+  if(!(_digital_states_sub = _node->subscribe("robot/digital_states", bind(&node::digital_states_cb, this, _1, _2)))) return false;
   
   return true;
 }
 
 void node::motor_states_cb(const bson_t *msg, void *)
 {
+  
 }
 
 void node::servo_states_cb(const bson_t *msg, void *)

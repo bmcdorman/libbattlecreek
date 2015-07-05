@@ -1,4 +1,4 @@
-find_path(BSON_INCLUDE_DIR bson.h PATHS "${CMAKE_SOURCE_PREFIX}")
+find_path(BSON_INCLUDE_DIR libbson-1.0/bson.h PATHS "${CMAKE_SOURCE_PREFIX}")
 find_library(BSON_LIBRARY NAMES bson-1.0 libbson-1.0 PATHS "${CMAKE_SOURCE_PREFIX}")
 
 set(BSON_INCLUDE_DIR "${BSON_INCLUDE_DIR}/libbson-1.0")
