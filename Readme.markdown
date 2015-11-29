@@ -3,6 +3,27 @@ libbattlecreek
 
 Battlecreek is a client library that publishes/subscribes to actuation and sensor messages over daylite.
 
+Dependencies
+============
+* cmake > 2.8
+* c++ compiler with C++11 support
+* libbson 1.0
+* [bson_bind](https://github.com/kipr/bson_bind)
+* [daylite](https://github.com/kipr/daylite)
+
+Building
+========
+```
+mkdir build
+cd build
+cmake ..
+make
+make install
+```
+
+Useful cmake arguments:
+* `-DCMAKE_INSTALL_PREFIX=<install prefex>`, recommended for Windows
+* `-DCMAKE_PREFIX_PATH=<dependencies prefix path>`, useful when building for Windows to tell cmake where the dependencies were installed
 
 Published Daylite Messages
 ===========================
