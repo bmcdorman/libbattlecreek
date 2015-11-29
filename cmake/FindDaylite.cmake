@@ -3,7 +3,7 @@ find_package(BSON REQUIRED)
 find_path(DAYLITE_INCLUDE_DIR daylite/node.hpp)
 find_library(DAYLITE_LIBRARY NAMES daylite libdaylite)
 if(WIN32)
-  find_file(DAYLITE_DLL daylite.dll)
+  find_program(DAYLITE_DLL daylite.dll)
 endif()
 
 set(DAYLITE_LIBRARIES ${DAYLITE_LIBRARY} ${BSON_LIBRARIES})
