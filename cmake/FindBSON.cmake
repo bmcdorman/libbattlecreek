@@ -22,4 +22,3 @@ else()
   find_package_handle_standard_args(BSON DEFAULT_MSG BSON_LIBRARY BSON_INCLUDE_DIR)
   mark_as_advanced(BSON_INCLUDE_DIR BSON_LIBRARY)
 endif()
-

@@ -8,7 +8,12 @@ find_package(BsonBind REQUIRED)
 
 file(GLOB BATTLECREEK_SOURCES src/*.cpp)
 
-add_definitions(-std=c++11)
+if(NOT WIN32)
+  set(CXX_FLAGS "-std=c++11")
+endif()
+
+set(CMAKE_C_FLAGS ${C_FLAGS})
+set(CMAKE_CXX_FLAGS ${CXX_FLAGS})
 
 include_directories(include ${CMAKE_BINARY_DIR})
 
