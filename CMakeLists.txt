@@ -25,3 +25,11 @@ add_bson_binds(BSON_BIND_INCLUDES
 add_library(battlecreek SHARED ${BATTLECREEK_SOURCES} ${BSON_BIND_INCLUDES})
 
 target_link_libraries(battlecreek ${DAYLITE_LIBRARIES})
+
+if(WIN32)
+  install(TARGETS battlecreek
+          ARCHIVE DESTINATION lib
+          RUNTIME DESTINATION bin)
+else()
+  install(TARGETS battlecreek LIBRARY DESTINATION lib)
+endif()
