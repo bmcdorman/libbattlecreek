@@ -35,6 +35,8 @@ SET(BSON_BIND_INCLUDES ${BSON_BIND_INCLUDES_TMP})
 
 file(GLOB INCLUDES ${BSON_BIND_INCLUDES})
 
+add_custom_target(battlecreek ALL DEPENDS ${BSON_BIND_INCLUDES})
+
 ################################################################################
 #   Install                                                                    #
 ################################################################################
