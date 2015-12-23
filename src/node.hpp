@@ -47,7 +47,7 @@ namespace battlecreek
     
     bool analog_pullup(const uint8_t id);
     bool digital_mode(const uint8_t id);
-    motor_state motor_state(const uint8_t id);
+    struct motor_state motor_state(const uint8_t id);
     uint16_t servo_position(const uint8_t id);
     
     void publish();
