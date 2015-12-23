@@ -10,8 +10,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 find_package(Daylite REQUIRED)
 find_package(BsonBind REQUIRED)
 
-file(GLOB BATTLECREEK_SOURCES src/*.cpp)
-
 if(NOT WIN32)
   set(CXX_FLAGS "-std=c++11")
 endif()
@@ -40,12 +38,10 @@ FOREACH(f ${BSON_BIND_INCLUDES})
 ENDFOREACH(f)
 SET(BSON_BIND_INCLUDES ${BSON_BIND_INCLUDES_TMP})
 
-file(GLOB BATTLECREEK_INCLUDES ${INCLUDE}/battlecreek/*.hpp)
-
-file(GLOB INCLUDES ${BATTLECREEK_INCLUDES} ${BSON_BIND_INCLUDES})
+file(GLOB INCLUDES ${BSON_BIND_INCLUDES})
 file(GLOB SOURCES ${SRC}/*)
 
-add_library(battlecreek SHARED ${BATTLECREEK_SOURCES} ${BSON_BIND_INCLUDES})
+add_library(battlecreek SHARED ${BSON_BIND_INCLUDES})
 
 target_link_libraries(battlecreek ${DAYLITE_LIBRARIES})
 
@@ -53,8 +49,7 @@ target_link_libraries(battlecreek ${DAYLITE_LIBRARIES})
 #   Install                                                                    #
 ################################################################################
 
-install(FILES ${BATTLECREEK_INCLUDES} DESTINATION include/battlecreek)
-install(FILES ${BSON_BIND_INCLUDES} DESTINATION include/battlecreek/msgs)
+install(FILES ${BSON_BIND_INCLUDES} DESTINATION include/battlecreek)
 
 if(WIN32)
   install(TARGETS battlecreek
