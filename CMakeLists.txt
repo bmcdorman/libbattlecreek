@@ -25,6 +25,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/servo_states.bsonbind
   src/digital_states.bsonbind
   src/analog_states.bsonbind
+  src/battery_state.bsonbind
 )
 
 SET(BSON_BIND_INCLUDES_TMP "")
