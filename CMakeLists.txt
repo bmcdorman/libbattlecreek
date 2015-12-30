@@ -26,6 +26,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/digital_states.bsonbind
   src/analog_states.bsonbind
   src/battery_state.bsonbind
+  src/robot_states.bsonbind
 )
 
 SET(BSON_BIND_INCLUDES_TMP "")

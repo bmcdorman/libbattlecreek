@@ -1,0 +1,6 @@
+%package battlecreek
+analog_states analog_states!
+battery_state battery_state!
+digital_states digital_states!
+motor_states motor_states!
+servo_states servo_states!
