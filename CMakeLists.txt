@@ -20,13 +20,17 @@ include_directories(include ${CMAKE_BINARY_DIR})
 include_directories(${DAYLITE_INCLUDE_DIRS})
 
 add_bson_binds(BSON_BIND_INCLUDES
-  src/motor_state.bsonbind
-  src/motor_states.bsonbind
-  src/servo_states.bsonbind
-  src/digital_states.bsonbind
+  src/accel_state.bsonbind
   src/analog_states.bsonbind
   src/battery_state.bsonbind
+  src/digital_states.bsonbind
+  src/gyro_state.bsonbind
+  src/imu_state.bsonbind
+  src/magneto_state.bsonbind
+  src/motor_state.bsonbind
+  src/motor_states.bsonbind
   src/robot_states.bsonbind
+  src/servo_states.bsonbind
 )
 
 SET(BSON_BIND_INCLUDES_TMP "")

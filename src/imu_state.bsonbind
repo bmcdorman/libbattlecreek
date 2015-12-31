@@ -1,0 +1,5 @@
+%package battlecreek
+accel_state accel_state!
+gyro_state gyro_state!
+magneto_state magneto_state!
+bool calibrated!

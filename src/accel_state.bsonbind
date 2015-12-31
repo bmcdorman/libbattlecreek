@@ -1,0 +1,5 @@
+%package battlecreek
+short x!
+short y!
+short z!
+bool calibrated!
