@@ -29,6 +29,8 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/magneto_state.bsonbind
   src/motor_state.bsonbind
   src/motor_states.bsonbind
+  src/pid_state.bsonbind
+  src/pid_states.bsonbind
   src/robot_states.bsonbind
   src/servo_states.bsonbind
   src/set_accel_state.bsonbind
@@ -37,6 +39,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/set_imu_state.bsonbind
   src/set_magneto_state.bsonbind
   src/set_motor_state.bsonbind
+  src/set_pid_state.bsonbind
   src/set_servo_state.bsonbind
 )
 

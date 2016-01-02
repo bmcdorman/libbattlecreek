@@ -1,0 +1,7 @@
+%package battlecreek
+int32 p!
+int32 i!
+int32 d!
+int32 pd!
+int32 id!
+int32 dd!
