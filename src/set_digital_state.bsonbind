@@ -1,0 +1,4 @@
+%package battlecreek
+uint8 port!
+bool value
+bool output
