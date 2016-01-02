@@ -1,0 +1,10 @@
+%package battlecreek
+uint8 port!
+uint8 mode
+uint8 direction
+bool open_loop
+int32 position
+int32 velocity
+int16 power
+bool done
+bool stop
