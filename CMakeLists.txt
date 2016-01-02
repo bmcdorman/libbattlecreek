@@ -31,7 +31,11 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/motor_states.bsonbind
   src/robot_states.bsonbind
   src/servo_states.bsonbind
+  src/set_accel_state.bsonbind
   src/set_digital_state.bsonbind
+  src/set_gyro_state.bsonbind
+  src/set_imu_state.bsonbind
+  src/set_magneto_state.bsonbind
   src/set_motor_state.bsonbind
   src/set_servo_state.bsonbind
 )
