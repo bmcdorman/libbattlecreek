@@ -5,3 +5,5 @@ digital_states digital_states!
 imu_state imu_state!
 motor_states motor_states!
 servo_states servo_states!
+uint64 seq!
+uint64 update_count!
