@@ -2,9 +2,8 @@
 uint8 port!
 uint8 mode
 uint8 direction
-bool open_loop
-int32 position
-int32 velocity
+bool reset_position
+int32 position_goal
+int32 velocity_goal
 int16 power
-bool done
 bool stop
