@@ -1,6 +1,11 @@
 %package battlecreek
-string mode!
-bool open_loop
-int32 position
-int32 velocity
-int16 power
+uint8 mode!
+uint8 direction!
+int32 position!
+int32 velocity!
+int32 goal_position!
+int32 goal_velocity!
+int16 power!
+bool done!
+bool pid_active!
+bool stop!

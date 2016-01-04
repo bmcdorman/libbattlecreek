@@ -1,0 +1,4 @@
+%package battlecreek
+uint8 port!
+uint16 position
+bool enabled

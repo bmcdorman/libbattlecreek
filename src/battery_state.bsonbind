@@ -1,2 +1,3 @@
 %package battlecreek
 real32 capacity!
+uint16 raw_adc!
