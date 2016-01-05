@@ -1,0 +1,3 @@
+%package battlecreek
+real32 low_voltage_threshold
+uint32 update_delay

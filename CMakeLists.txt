@@ -23,6 +23,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/accel_state.bsonbind
   src/analog_states.bsonbind
   src/battery_state.bsonbind
+  src/battlehill_state.bsonbind
   src/blob.bsonbind
   src/channel_data.bsonbind
   src/digital_states.bsonbind
@@ -37,6 +38,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/robot_states.bsonbind
   src/servo_states.bsonbind
   src/set_accel_state.bsonbind
+  src/set_battlehill_state.bsonbind
   src/set_digital_state.bsonbind
   src/set_gyro_state.bsonbind
   src/set_imu_state.bsonbind
