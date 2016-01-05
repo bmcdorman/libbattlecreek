@@ -23,7 +23,10 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/accel_state.bsonbind
   src/analog_states.bsonbind
   src/battery_state.bsonbind
+  src/blob.bsonbind
+  src/channel_data.bsonbind
   src/digital_states.bsonbind
+  src/frame_data.bsonbind
   src/gyro_state.bsonbind
   src/imu_state.bsonbind
   src/magneto_state.bsonbind
@@ -41,6 +44,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/set_motor_state.bsonbind
   src/set_pid_state.bsonbind
   src/set_servo_state.bsonbind
+  src/settings.bsonbind
 )
 
 SET(BSON_BIND_INCLUDES_TMP "")
