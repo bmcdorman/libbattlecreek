@@ -25,6 +25,7 @@ add_bson_binds(BSON_BIND_INCLUDES
   src/battery_state.bsonbind
   src/battlehill_state.bsonbind
   src/blob.bsonbind
+  src/button_states.bsonbind
   src/channel_data.bsonbind
   src/digital_states.bsonbind
   src/frame_data.bsonbind
