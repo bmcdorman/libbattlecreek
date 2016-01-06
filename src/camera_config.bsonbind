@@ -1,0 +1,7 @@
+# Config data for multiple channels
+# Corresponds to a single config file
+
+%package boyd
+
+string config_name!
+channel_config[] channels!

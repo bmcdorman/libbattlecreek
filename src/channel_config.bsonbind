@@ -1,0 +1,11 @@
+# HSV config for a single channel
+
+%package boyd
+
+string channel_name!
+uint8 th!
+uint8 ts!
+uint8 tv!
+uint8 bh!
+uint8 bs!
+uint8 bv!

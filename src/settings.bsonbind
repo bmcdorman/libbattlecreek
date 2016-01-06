@@ -7,3 +7,4 @@ uint16 height
 uint16 maxNumBlobs
 string config_base_path
 string config_name
+camera_config[] camera_configs
