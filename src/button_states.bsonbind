@@ -1,2 +1,3 @@
 %package battlecreek
+%noexception 
 bool[] pressed!
