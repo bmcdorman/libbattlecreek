@@ -8,3 +8,4 @@ servo_states servo_states!
 pid_states pid_states!
 uint64 seq!
 uint64 update_count!
+uint16 firmware_version!
